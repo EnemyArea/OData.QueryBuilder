@@ -1,5 +1,4 @@
-﻿using System;
-using OData.QueryBuilder.Options;
+﻿using OData.QueryBuilder.Options;
 using System.Linq.Expressions;
 
 namespace OData.QueryBuilder.Expressions.Visitors

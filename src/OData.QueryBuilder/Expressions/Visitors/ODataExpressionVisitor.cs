@@ -2,6 +2,8 @@
 using OData.QueryBuilder.Extensions;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace OData.QueryBuilder.Expressions.Visitors
 {
@@ -80,7 +82,8 @@ namespace OData.QueryBuilder.Expressions.Visitors
 
             if (string.IsNullOrEmpty(memberName))
             {
-                return memberExpression.Member.Name;
+                var dataMemberName = memberExpression.Member.GetCustomAttribute<DataMemberAttribute>()?.Name;
+                return dataMemberName ?? memberExpression.Member.Name;
             }
 
             return memberExpression.Member.DeclaringType.IsNullableType() ?
@@ -88,7 +91,7 @@ namespace OData.QueryBuilder.Expressions.Visitors
                 :
                 $"{memberName}/{memberExpression.Member.Name}";
         }
-
+        
         public virtual string ToQuery(LambdaExpression expression) =>
             VisitExpression(expression, expression.Body);
     }

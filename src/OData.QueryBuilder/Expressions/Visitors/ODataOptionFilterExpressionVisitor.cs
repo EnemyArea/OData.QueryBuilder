@@ -5,7 +5,6 @@ using OData.QueryBuilder.Extensions;
 using OData.QueryBuilder.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 
 namespace OData.QueryBuilder.Expressions.Visitors
